@@ -44,7 +44,7 @@ func NewApplication(dsn string) (*Application, error) {
 	// userService := user.NewService(store.UserRepo)
 
 	// Init Handlers
-	handler := ihttp.NewHandler(postService)
+	handler := ihttp.NewHandler(postService, templateCache)
 	router := router.NewRouter(handler)
 
 	return &Application{

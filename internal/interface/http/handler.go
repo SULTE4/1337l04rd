@@ -3,19 +3,22 @@ package http
 import (
 	"1337b04rd/internal/domain/post"
 	"net/http"
+	"text/template"
 )
 
 type Handler struct {
-	postService *post.Service
+	postService   *post.Service
+	templateCache map[string]*template.Template
 }
 
-func NewHandler(postService *post.Service) *Handler {
+func NewHandler(postService *post.Service, templateCache map[string]*template.Template) *Handler {
 	return &Handler{
 		postService: postService,
 	}
 }
 
 func (h *Handler) Catalog(w http.ResponseWriter, r *http.Request) {
+
 	w.Write([]byte("Showing posts"))
 }
 
