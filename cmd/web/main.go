@@ -7,7 +7,16 @@ import (
 	"net/http"
 	"os"
 	"time"
+
+	_ "github.com/lib/pq"
 )
+
+/*	TODO
+	cookie,
+	config (optional),
+	user authentication
+
+*/
 
 func main() {
 	dsn := "postgres://user:pass@localhost:5432/mydb?sslmode=disable"
