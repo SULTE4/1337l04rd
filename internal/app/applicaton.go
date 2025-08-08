@@ -30,6 +30,12 @@ func NewApplication(dsn string) (*Application, error) {
 		return nil, err
 	}
 
+	templateCache, err := ihttp.NewTemplateCache()
+	if err != nil {
+		logger.Error(err.Error())
+		os.Exit(1)
+	}
+
 	// Init Store (adapters)
 	store := NewStore(db)
 

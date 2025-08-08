@@ -20,6 +20,7 @@ import (
 
 func main() {
 	dsn := "postgres://user:pass@localhost:5432/mydb?sslmode=disable"
+	addr := ":8080"
 
 	app, err := app.NewApplication(dsn)
 	if err != nil {
@@ -27,7 +28,7 @@ func main() {
 	}
 
 	srv := &http.Server{
-		Addr:         ":8080",
+		Addr:         addr,
 		Handler:      *app.Router,
 		ErrorLog:     slog.NewLogLogger(app.Logger.Handler(), slog.LevelError),
 		IdleTimeout:  time.Minute,
@@ -35,7 +36,7 @@ func main() {
 		WriteTimeout: 10 * time.Second,
 	}
 
-	app.Logger.Info("Server running at :8080")
+	app.Logger.Info("Server running at", slog.String("addr", addr))
 	err = srv.ListenAndServe()
 
 	app.Logger.Error(err.Error())

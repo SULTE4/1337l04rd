@@ -11,7 +11,7 @@ func NewRouter(handler *ihttp.Handler) http.Handler {
 	router.HandleFunc("GET /", handler.Catalog)
 	router.HandleFunc("GET /post/create", handler.Create)
 	router.HandleFunc("POST /submit-post", handler.CreatePost)
-	router.HandleFunc("GET /post/view", handler.ViewPost)
+	router.HandleFunc("GET /post/{id}", handler.ViewPost)
 	router.HandleFunc("GET /archive/post", handler.Archive)
 	router.HandleFunc("GET /archive/view/post", handler.ViewPost)
 	router.HandleFunc("GET /error", handler.Error)
