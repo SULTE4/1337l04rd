@@ -35,7 +35,6 @@ func NewApplication(dsn string) (*Application, error) {
 		logger.Error(err.Error())
 		os.Exit(1)
 	}
-
 	// Init Store (adapters)
 	store := NewStore(db)
 
